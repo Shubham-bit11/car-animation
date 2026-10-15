@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome ItzFizz – Scroll Hero</title>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="road"><div class="lane"></div></div>
+
+  <h1 class="title" id="title" aria-label="Welcome ItzFizz">WELCOME ITZFIZZ</h1>
+
+  <div class="stat l" style="top:34%"><div class="num"><span data-to="58">0</span><sup>%</sup></div><p class="desc">Increase in pick up point use</p><i class="bar"></i></div>
+  <div class="stat l" style="top:66%"><div class="num"><span data-to="27">0</span><sup>%</sup></div><p class="desc">Increase in pick up point use</p><i class="bar"></i></div>
+  <div class="stat r" style="top:50%"><div class="num"><span data-to="23">0</span><sup>%</sup></div><p class="desc">Decreased in customer phone calls</p><i class="bar"></i></div>
+  <div class="stat r" style="top:80%"><div class="num"><span data-to="40">0</span><sup>%</sup></div><p class="desc">Decreased in customer phone calls</p><i class="bar"></i></div>
+
+  <!-- Top-view car (drawn inline, front facing down) -->
+  <div class="car" id="car" aria-hidden="true">
+    <svg viewBox="0 0 120 290" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="bodyp" d="M60 30C64 30 66 36 66 46L67 88C70 104 84 114 88 136L88 150C88 158 82 162 74 164L72 172C72 200 68 225 65 258L60 264L55 258C52 225 48 200 48 172L46 164C38 162 32 158 32 150L32 136C36 114 50 104 53 88L54 46C54 36 56 30 60 30Z"/>
+        <clipPath id="bc"><use href="#bodyp"/></clipPath>
+        <linearGradient id="shine" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#000" stop-opacity=".25"/>
+          <stop offset=".35" stop-color="#fff" stop-opacity=".22"/>
+          <stop offset=".7" stop-color="#fff" stop-opacity=".05"/>
+          <stop offset="1" stop-color="#000" stop-opacity=".3"/>
+        </linearGradient>
+        <linearGradient id="rb" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#ff3d81"/><stop offset=".35" stop-color="#ffc400"/>
+          <stop offset=".7" stop-color="#2ee6a6"/><stop offset="1" stop-color="#2f7bff"/>
+        </linearGradient>
+        <pattern id="chk" width="8" height="6" patternUnits="userSpaceOnUse"><path d="M0 0H4V3H0ZM4 3H8V6H4Z" fill="#0a0b0e"/></pattern>
+      </defs>
+
+      <!-- rear wing: main plane with black checker, endplates, beam wing -->
+      <rect x="14" y="6" width="92" height="14" rx="3" fill="var(--car)"/>
+      <rect x="18" y="9" width="84" height="8" fill="url(#chk)"/>
+      <rect x="11" y="3" width="5" height="25" rx="2" fill="var(--car)" stroke="#0a0b0e" stroke-width="1"/>
+      <rect x="104" y="3" width="5" height="25" rx="2" fill="var(--car)" stroke="#0a0b0e" stroke-width="1"/>
+      <rect x="30" y="23" width="60" height="4" rx="2" fill="#0a0b0e"/>
+
+      <!-- front wing: black planes, orange flaps, endplates -->
+      <rect x="8" y="264" width="104" height="14" rx="4" fill="#0a0b0e"/>
+      <rect x="16" y="266" width="88" height="3" rx="1.5" fill="var(--car)"/>
+      <rect x="24" y="272" width="72" height="3" rx="1.5" fill="var(--car)"/>
+      <rect x="5" y="258" width="5" height="26" rx="2" fill="#0a0b0e"/><rect x="110" y="258" width="5" height="26" rx="2" fill="#0a0b0e"/>
+
+      <!-- tyres with rainbow sidewall edge -->
+      <g fill="#07080b">
+        <rect x="6" y="36" width="24" height="54" rx="8"/><rect x="90" y="36" width="24" height="54" rx="8"/>
+        <rect x="6" y="186" width="22" height="52" rx="8"/><rect x="92" y="186" width="22" height="52" rx="8"/>
+      </g>
+      <g fill="url(#rb)">
+        <rect x="6" y="46" width="3" height="34" rx="1.5"/><rect x="111" y="46" width="3" height="34" rx="1.5"/>
+        <rect x="6" y="196" width="3" height="32" rx="1.5"/><rect x="111" y="196" width="3" height="32" rx="1.5"/>
+      </g>
+      <g stroke="#1b1d23" stroke-width="1"><path d="M14 42V84M22 42V84M98 42V84M106 42V84M14 192V232M21 192V232M99 192V232M106 192V232"/></g>
+
+      <!-- suspension arms -->
+      <g stroke="#0a0b0e" stroke-width="2.4" stroke-linecap="round" fill="none">
+        <path d="M30 56L54 62M30 74L54 68M90 56L66 62M90 74L66 68"/>
+        <path d="M28 200L50 208M28 224L50 214M92 200L70 208M92 224L70 214"/>
+      </g>
+
+      <!-- papaya body -->
+      <use href="#bodyp" fill="var(--car)"/>
+      <use href="#bodyp" fill="url(#shine)"/>
+      <!-- black nose tip (clipped) -->
+      <g clip-path="url(#bc)"><path fill="#0a0b0e" d="M40 242H80V270H40Z"/></g>
+      <!-- engine cover fin + airbox -->
+      <path d="M60 38V96" stroke="#0a0b0e" stroke-width="2"/>
+      <rect x="52" y="98" width="16" height="22" rx="7" fill="#0a0b0e"/>
+      <ellipse cx="60" cy="112" rx="5" ry="7" fill="#1f232c"/>
+      <!-- sidepod inlets + mirrors -->
+      <path d="M76 160L87 153M44 160L33 153" stroke="#0a0b0e" stroke-width="3.5" stroke-linecap="round"/>
+      <rect x="37" y="173" width="10" height="4" rx="2" fill="#0a0b0e"/><rect x="73" y="173" width="10" height="4" rx="2" fill="#0a0b0e"/>
+      <!-- cockpit, helmet, halo -->
+      <ellipse cx="60" cy="152" rx="11" ry="17" fill="#0a0b0e"/>
+      <circle cx="60" cy="151" r="6.5" fill="#f2e21a" stroke="#0a0b0e" stroke-width="1"/>
+      <path d="M55 154Q60 160 65 154Z" fill="#2a1c3a"/>
+      <path d="M49 136C49 160 56 170 60 172C64 170 71 160 71 136" stroke="#0a0b0e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <path d="M60 172V182" stroke="#0a0b0e" stroke-width="2.6" stroke-linecap="round"/>
+      <!-- nose + chassis crease -->
+      <path d="M56 190V250M64 190V250" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <div class="scroll-hint" id="hint">Scroll</div>
+</section>
+
+<section class="after">
+  <div>
+    <h2>Motion tied to scroll.</h2>
+    <p>The car, the road and the stats are all driven by scroll progress through one scrubbed GSAP timeline, using transforms only so the browser can composite every frame.</p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
